@@ -5,6 +5,7 @@ _This SDK for Version 2.00 of the YourMembership.com API_
 
 [![Gem Version](https://badge.fury.io/rb/your_membership.svg)](http://badge.fury.io/rb/your_membership)
 [![Inline docs](http://inch-ci.org/github/ECHOInternational/your_membership.svg?branch=master)](http://rubydoc.info/gems/your_membership/1.0.0/frames)
+[![Code Climate](https://codeclimate.com/github/ECHOInternational/your_membership/badges/gpa.svg)](https://codeclimate.com/github/ECHOInternational/your_membership)
 
 ## Installation
 
