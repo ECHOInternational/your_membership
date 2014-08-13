@@ -4,6 +4,7 @@ YourMembership: Ruby SDK for the YourMembership.Com XML API
 _This SDK for Version 2.00 of the YourMembership.com API_
 
 [![Gem Version](https://badge.fury.io/rb/your_membership.svg)](http://badge.fury.io/rb/your_membership)
+[![Inline docs](http://inch-ci.org/github/ECHOInternational/your_membership.svg?branch=master)](http://inch-ci.org/github/ECHOInternational/your_membership)
 
 ## Installation
 
