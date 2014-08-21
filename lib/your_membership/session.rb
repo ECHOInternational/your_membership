@@ -34,7 +34,7 @@ module YourMembership
     # @param user_name [String] Constructor takes optional parameters of user_name and password. If supplied then the
     #  session will be automatically authenticated upon instantiation.
     # @param password [String]
-    def create(user_name = nil, password = nil)
+    def self.create(user_name = nil, password = nil)
       response = self.class.post('/', :body => self.class.build_XML_request('Session.Create'))
 
       if self.class.response_valid? response
