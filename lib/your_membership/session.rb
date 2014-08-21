@@ -35,7 +35,7 @@ module YourMembership
     #  session will be automatically authenticated upon instantiation.
     # @param password [String]
     def self.create(user_name = nil, password = nil)
-      response = post('/', :body => self.class.build_XML_request('Session.Create'))
+      response = post('/', :body => build_XML_request('Session.Create'))
 
       if response_valid? response
         session = new response['YourMembership_Response']['Session.Create']['SessionID']
