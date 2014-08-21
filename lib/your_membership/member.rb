@@ -59,7 +59,7 @@ module YourMembership
     # @param [String] password The password in cleartext
     # @return [YourMembership::Member] Returns a new Member object with associated authenticated Session object
     def self.create_by_authentication(username, password)
-      session = YourMembership::Session.new username, password
+      session = YourMembership::Session.create username, password
       create_from_session(session)
     end
 

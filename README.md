@@ -84,7 +84,7 @@ The options hash is present any time optional arguments can be passed to a metho
 `YourMembership::Events.all_search` takes one required argument (a session object/key) and up to three optional arguments passed as a hash.
 
 ```RUBY
-session = YourMembership::Session.new
+session = YourMembership::Session.create
 options = {:SearchText => "A string to search for", :PageSize => 5, :StartRecord => 6}
 YourMembership::Events.all_search session, options
 ```
@@ -135,10 +135,10 @@ Sessions can be **generic** (unauthenticated), **authenticated**, or **abandoned
 ##### Examples:
 ```RUBY
 # Generic (unauthenticated) Session
-session = YourMembership::Session.new
+session = YourMembership::Session.create
 
 # Authenticated Session
-auth_session = YourMembership::Session.new 'username', 'password'
+auth_session = YourMembership::Session.create 'username', 'password'
 
 # Sessions can also be authenticated after creation in one of two ways:
 
@@ -168,7 +168,7 @@ member = YourMembership::Member.create_by_authentication 'username', 'password'
 # Members can also be created by passing in an already existing Session instance
 # this is especially useful when Sessions are authenticated through token
 # authentication.
-auth_session = YourMembership::Session.new 'username', 'password'
+auth_session = YourMembership::Session.create 'username', 'password'
 member = YourMembership::Member.create_from_session auth_session
 ```
 _Member objects can be created directly without a bound Session, but there is (as of yet) very little use for this._

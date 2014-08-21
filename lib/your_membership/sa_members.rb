@@ -169,7 +169,7 @@ module YourMembership
         response = post('/', :body => build_XML_request('Sa.Members.Profile.Create', nil, options))
         response_valid? response
         YourMembership::Sa::Auth.authenticate(
-          YourMembership::Session.new,
+          YourMembership::Session.create,
           profile.data['Username'],
           profile.data['Password']
         )

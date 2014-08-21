@@ -14,30 +14,35 @@ module YourMembership
   # * *Abandoned sessions* are no longer usable and are essentially the same as logging out.
   #
   # @example Generic (unauthenticated) Session
-  #  session = YourMembership::Session.new # => <YourMembership::Session>
+  #  session = YourMembership::Session.create # => <YourMembership::Session>
   # @example Authenticated Session
-  #  auth_session = YourMembership::Session.new 'username', 'password' # => <YourMembership::Session>
+  #  auth_session = YourMembership::Session.create 'username', 'password' # => <YourMembership::Session>
   #
   # @attr_reader [String] session_id The unique session identifier provided by the API
   # @attr_reader [String, Nil] user_id The user id of the user bound to the session, if one exists.
   class Session < YourMembership::Base
-    attr_reader :session_id, :user_id
+    attr_reader :session_id, :user_id, :call_id
+
+    # Generates an empty session
+    def initialize(session_id = nil, call_id = 1, user_id = nil)
+      @session_id = session_id
+      @call_id = call_id
+      @user_id = user_id
+    end
 
     # @see https://api.yourmembership.com/reference/2_00/Session_Create.htm
     # @param user_name [String] Constructor takes optional parameters of user_name and password. If supplied then the
     #  session will be automatically authenticated upon instantiation.
     # @param password [String]
-    def initialize(user_name = nil, password = nil)
-      @call_id = 1
-      @user_id = nil
-
+    def create(user_name = nil, password = nil)
       response = self.class.post('/', :body => self.class.build_XML_request('Session.Create'))
 
       if self.class.response_valid? response
-        @session_id = response['YourMembership_Response']['Session.Create']['SessionID']
+        session = new response['YourMembership_Response']['Session.Create']['SessionID']
       end
 
-      authenticate user_name, password if user_name
+      session.authenticate user_name, password if user_name
+      session
     end
 
     # @return [Integer] Auto Increments ad returns the call_id for the session as required by the YourMembership.com API
