@@ -96,8 +96,17 @@ describe YourMembership::Profile do
   end
 
   it "adds arbitrary custom keys when creating new profiles" do
-    profile_custom_hash = {'foo' => 'bar'}
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', nil, {}, profile_custom_hash)
+    profile_hash = {
+      'CustomFieldResponses' => {
+        'CustomFieldResponse' => [{
+          'FieldCode' => 'foo',
+          'Values' => {
+            'Value' => 'bar'
+          }
+        }]
+      }
+    }
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', nil, profile_hash)
     profile.custom_data.should include 'foo'
     profile.custom_data['foo'].should == 'bar'
   end
