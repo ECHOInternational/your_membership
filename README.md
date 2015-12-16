@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-Every effort has been made to expose the YourMembership.com API as transparently as possible while still providing a natively Ruby interface. 
+Every effort has been made to expose the YourMembership.com API as transparently as possible while still providing a natively Ruby interface.
 
 ### Scope and Naming
 
@@ -94,7 +94,7 @@ You can pass strings as keys if you do not prefer to use Symbols.
 
 ##### SDK-Specific Implementation of Argument Types
 
-You should use the standard Ruby types to represent data, for instance: 
+You should use the standard Ruby types to represent data, for instance:
 
 `:Timestamp` and other date or time arguments should be passed as DateTime objects rather than formatted strings, the formatting will be done for you.
 
@@ -104,7 +104,7 @@ You should use the standard Ruby types to represent data, for instance:
 
 #### Returned Values
 
-The SDK translates the returned data into Ruby Objects of only a few types. Nearly all methods return an Array, this may be an Array of Strings or, more likely, it will be an Array of Hashes. 
+The SDK translates the returned data into Ruby Objects of only a few types. Nearly all methods return an Array, this may be an Array of Strings or, more likely, it will be an Array of Hashes.
 
 If only a single record can ever be retrieved at a time through a method a Hash object will be returned instead of an Array.
 
@@ -162,7 +162,7 @@ The Member object builds upon the Session object to more fully represent an auth
 ##### Instantiation:
 ```RUBY
 # Members can be created by authenticating directly with the YourMembership API,
-# the session is automatically created and bound to the Member instance. 
+# the session is automatically created and bound to the Member instance.
 member = YourMembership::Member.create_by_authentication 'username', 'password'
 
 # Members can also be created by passing in an already existing Session instance
@@ -213,7 +213,7 @@ An *outdated* list of standard fields can be found here: https://api.yourmembers
 
 ##### Data Access
 + **Profile#data** `Hash` This internal hash can be read and written to and should contain only fields that are standard in the YourMembership system.
-+ **Profile#custom_data** `Hash` This internal hash can be read and written to and should contain the fields that are specified as custom responses in a specific YourMembership community. 
++ **Profile#custom_data** `Hash` This internal hash can be read and written to and should contain the fields that are specified as custom responses in a specific YourMembership community.
 + **Profile#to_h** `Hash` is a read-only method for returning a single nested hash of both standard and custom fields.
 
 #### YourMembership::Export
@@ -238,7 +238,7 @@ when :complete
 	# Export is ready
 	donations.export_uri
 end
-``` 
+```
 
 ## About The Author(s)
 
@@ -259,7 +259,9 @@ If you find a problem with this library or would like to contribute an improveme
 If you're a developer that would like to help solve world hunger problems with some of your spare time, we are always looking for talented volunteers. Contact Nate Flood by email: nate [at] echonet [dot] org
 
 1. Fork it ( https://github.com/ECHOInternational/your_membership/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+2. If you need to make real API calls while testing, see the .env file
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Ensure the specs pass (`bundle exec rspec`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create a new Pull Request
