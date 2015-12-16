@@ -20,13 +20,12 @@ module YourMembership
           end
         end
 
-        # TODO: Fix this behavior
-        it 'raises a NoMethodError when there are no members found' do
+        it 'returns an empty array when there are no members found' do
           VCR.use_cassette 'sa_members_all_getids_timestamp_none' do
             time = days_ago(0).strftime('%Y-%m-%d %H:%M:%S')
-            expect {
-              described_class.all_getIDs(:Timestamp => time)
-            }.to raise_exception(NoMethodError)
+            result = described_class.all_getIDs(:Timestamp => time)
+            expect(result).to be_an(Array)
+            expect(result).to eq([])
           end
         end
       end
