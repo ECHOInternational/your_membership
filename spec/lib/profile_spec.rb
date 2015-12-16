@@ -79,10 +79,11 @@ describe YourMembership::Profile do
     }
   end
   it "accepts and sets required parameters for new profiles" do
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', 'apassword')
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', 'apassword', {})
     profile.data['FirstName'].should == 'afirstname'
     profile.data['LastName'].should == 'alastname'
     profile.data['MemberTypeCode'].should == 'amembertypecode'
+    profile.data['EmailAddr'].should == 'aemail'
     profile.data['Username'].should == 'ausername'
     profile.data['Password'].should == 'apassword'
   end
@@ -130,7 +131,7 @@ describe YourMembership::Profile do
   it "can be manipulated directly through the data attribute" do
     profile_hash = {'foo' => 'bar'}
     profile = YourMembership::Profile.new(profile_hash)
-    expect {profile.data['foo'] = 'baz'}.to change{profile.data['foo']}.from('bar').to('baz') 
+    expect {profile.data['foo'] = 'baz'}.to change{profile.data['foo']}.from('bar').to('baz')
   end
 
   it "has a custom_data attribute" do
@@ -143,7 +144,7 @@ describe YourMembership::Profile do
     profile.custom_data['foo'] = 'bar'
     expect profile.custom_data.should include 'foo'
     expect profile.custom_data['foo'].should == 'bar'
-    expect {profile.custom_data['foo'] = 'baz'}.to change{profile.custom_data['foo']}.from('bar').to('baz') 
+    expect {profile.custom_data['foo'] = 'baz'}.to change{profile.custom_data['foo']}.from('bar').to('baz')
   end
 
   it "adds a 'CustomFieldResponses' key as a hash" do
