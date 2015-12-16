@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.yourmembership.com/
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <YourMembership>
+          <Version>2.00</Version>
+          <ApiKey><PRIVATE_KEY></ApiKey>
+          <SaPasscode><SA_PASSCODE></SaPasscode>
+          <CallID>10000</CallID>
+          <Call Method="Sa.Members.All.GetIDs">
+            <Timestamp>2015-12-02 15:54:11</Timestamp>
+          </Call>
+        </YourMembership>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '24051'
+      Content-Type:
+      - text/xml; Charset=utf-8
+      Set-Cookie:
+      - "<ASP_SESSION_ID>"
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 16 Dec 2015 20:54:12 GMT
+      Connection:
+      - Keep-alive
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n\r\n<YourMembership_Response>\r\n<ErrCode>0</ErrCode>\r\n<ExtendedErrorInfo></ExtendedErrorInfo>\r\n<Sa.Members.All.GetIDs>\r\n<ServerGmtBias>-5</ServerGmtBias>\r\n<ServerTime>2015-12-16
+        15:54:12</ServerTime>\r\n<Members>\r\n<ID>57EEB598-CB44-4D85-B0D6-377F393AF5B4</ID>\r\n<ID>1C0CE647-FAA5-4EB0-ADF0-5B669B36378E</ID>\r\n</Members>\r\n</Sa.Members.All.GetIDs>\r\n</YourMembership_Response>\r\n"
+    http_version:
+  recorded_at: Wed, 16 Dec 2015 20:54:12 GMT
+recorded_with: VCR 3.0.0
