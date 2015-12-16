@@ -90,7 +90,7 @@ describe YourMembership::Profile do
 
   it "adds arbitrary keys when creating new profiles" do
     profile_hash = {'foo' => 'bar'}
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', nil, profile_hash)
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', nil, profile_hash)
     profile.data.should include 'foo'
     profile.data['foo'].should == 'bar'
   end
