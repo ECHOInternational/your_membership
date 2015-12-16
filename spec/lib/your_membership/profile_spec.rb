@@ -1,5 +1,4 @@
 require "spec_helper"
-require "your_membership/profile"
 
 describe YourMembership::Profile do
   before do
