@@ -203,4 +203,21 @@ describe YourMembership::Profile do
     profile.custom_data.should include 'Workingcountry'
     profile.custom_data['Workingcountry'].should == "USA"
   end
+
+  describe 'when there is a single CustomFieldResponse' do
+    it 'parses correctly' do
+      odd_data = @sample_profile.clone
+      odd_data['CustomFieldResponses'] = {
+        "CustomFieldResponse" => {
+          "Values" => {
+            "Value" => "None"
+          },
+          "FieldCode" => "Foundation",
+          "Visibility" => ""
+        }
+      }
+      profile = YourMembership::Profile.new(odd_data)
+      expect(profile.custom_data['Foundation']).to eq('None')
+    end
+  end
 end

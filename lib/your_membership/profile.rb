@@ -66,7 +66,13 @@ module YourMembership
     # @return [Hash] Single dimension hash containing keys and values as strings or arrays
     def parse_custom_field_responses(custom_fields)
       output_hash = {}
-      custom_fields['CustomFieldResponse'].each do |field|
+
+      # CustomFieldResponse may be an array (if multiple responses) or a hash
+      # (if single response). Make sure we're always dealing with an array.
+      responses = custom_fields['CustomFieldResponse']
+      responses = [responses] unless responses.is_a?(Array)
+
+      responses.each do |field|
         output_hash[field['FieldCode']] = field['Values']['Value'] if field['Values']
       end
       output_hash
