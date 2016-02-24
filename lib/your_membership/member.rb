@@ -377,7 +377,7 @@ module YourMembership
       # call is not authenticated then the session cannot be authenticated.
       return nil if error_code == '403'
 
-      # All Error Codes other than 403 inidicate an unrecoverable issue that
+      # All other non-zero Error Codes indicate an unrecoverable issue that
       # we need to raise an exception for.
       raise YourMembership::Error.new(
         response['YourMembership_Response']['ErrCode'],
