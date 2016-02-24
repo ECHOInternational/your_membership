@@ -379,10 +379,12 @@ module YourMembership
 
       # All other non-zero Error Codes indicate an unrecoverable issue that
       # we need to raise an exception for.
-      raise YourMembership::Error.new(
-        response['YourMembership_Response']['ErrCode'],
-        response['YourMembership_Response']['ErrDesc']
-      ) if error_code != '0'
+      if error_code != '0'
+        raise YourMembership::Error.new(
+          response['YourMembership_Response']['ErrCode'],
+          response['YourMembership_Response']['ErrDesc']
+        )
+      end
 
       if response['YourMembership_Response']['Member.IsAuthenticated']
         # If everything is ok retun the authenticated users ID
