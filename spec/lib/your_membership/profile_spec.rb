@@ -1,5 +1,4 @@
 require "spec_helper"
-require "profile"
 
 describe YourMembership::Profile do
   before do
@@ -79,24 +78,34 @@ describe YourMembership::Profile do
     }
   end
   it "accepts and sets required parameters for new profiles" do
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', 'apassword')
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', 'apassword', {})
     profile.data['FirstName'].should == 'afirstname'
     profile.data['LastName'].should == 'alastname'
     profile.data['MemberTypeCode'].should == 'amembertypecode'
+    profile.data['EmailAddr'].should == 'aemail'
     profile.data['Username'].should == 'ausername'
     profile.data['Password'].should == 'apassword'
   end
 
   it "adds arbitrary keys when creating new profiles" do
     profile_hash = {'foo' => 'bar'}
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', nil, profile_hash)
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', nil, profile_hash)
     profile.data.should include 'foo'
     profile.data['foo'].should == 'bar'
   end
 
   it "adds arbitrary custom keys when creating new profiles" do
-    profile_custom_hash = {'foo' => 'bar'}
-    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'ausername', nil, {}, profile_custom_hash)
+    profile_hash = {
+      'CustomFieldResponses' => {
+        'CustomFieldResponse' => [{
+          'FieldCode' => 'foo',
+          'Values' => {
+            'Value' => 'bar'
+          }
+        }]
+      }
+    }
+    profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', nil, profile_hash)
     profile.custom_data.should include 'foo'
     profile.custom_data['foo'].should == 'bar'
   end
@@ -130,7 +139,7 @@ describe YourMembership::Profile do
   it "can be manipulated directly through the data attribute" do
     profile_hash = {'foo' => 'bar'}
     profile = YourMembership::Profile.new(profile_hash)
-    expect {profile.data['foo'] = 'baz'}.to change{profile.data['foo']}.from('bar').to('baz') 
+    expect {profile.data['foo'] = 'baz'}.to change{profile.data['foo']}.from('bar').to('baz')
   end
 
   it "has a custom_data attribute" do
@@ -143,7 +152,7 @@ describe YourMembership::Profile do
     profile.custom_data['foo'] = 'bar'
     expect profile.custom_data.should include 'foo'
     expect profile.custom_data['foo'].should == 'bar'
-    expect {profile.custom_data['foo'] = 'baz'}.to change{profile.custom_data['foo']}.from('bar').to('baz') 
+    expect {profile.custom_data['foo'] = 'baz'}.to change{profile.custom_data['foo']}.from('bar').to('baz')
   end
 
   it "adds a 'CustomFieldResponses' key as a hash" do
@@ -193,5 +202,22 @@ describe YourMembership::Profile do
     profile = YourMembership::Profile.new(@sample_profile)
     profile.custom_data.should include 'Workingcountry'
     profile.custom_data['Workingcountry'].should == "USA"
+  end
+
+  describe 'when there is a single CustomFieldResponse' do
+    it 'parses correctly' do
+      odd_data = @sample_profile.clone
+      odd_data['CustomFieldResponses'] = {
+        "CustomFieldResponse" => {
+          "Values" => {
+            "Value" => "None"
+          },
+          "FieldCode" => "Foundation",
+          "Visibility" => ""
+        }
+      }
+      profile = YourMembership::Profile.new(odd_data)
+      expect(profile.custom_data['Foundation']).to eq('None')
+    end
   end
 end

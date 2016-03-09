@@ -136,11 +136,7 @@ module YourMembership
 
     # Indicates whether the session is bound to a user.
     def authenticated?
-      if valid?
-        !get_authenticated_user.nil?
-      else
-        false
-      end
+      valid? && !get_authenticated_user.nil?
     end
 
     # Get the ID of the currently authenticated user bound to this session.

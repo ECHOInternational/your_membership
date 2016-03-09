@@ -18,7 +18,8 @@ module YourMembership
       def self.all_getIDs(options = {}) # rubocop:disable Style/MethodName
         response = post('/', :body => build_XML_request('Sa.Members.All.GetIDs', nil, options))
         response_valid? response
-        response['YourMembership_Response']['Sa.Members.All.GetIDs']['Members']['ID']
+        members_hash = response['YourMembership_Response']['Sa.Members.All.GetIDs']['Members']
+        members_hash ? members_hash.fetch('ID') : []
       end
 
       # Returns a Hash of recent member activity on your YourMembership Site
