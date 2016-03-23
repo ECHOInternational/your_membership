@@ -220,4 +220,13 @@ describe YourMembership::Profile do
       expect(profile.custom_data['Foundation']).to eq('None')
     end
   end
+
+  describe 'when there is a single CustomFieldResponse' do
+    it 'parses correctly' do
+      data = @sample_profile.clone
+      data['CustomFieldResponses'] = nil
+      profile = YourMembership::Profile.new(data)
+      expect(profile.custom_data).to be_empty
+    end
+  end
 end
