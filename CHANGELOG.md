@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.3] - 2017-03-13
+### Fixed
+- Allow YourMembership::Sa::Members.profile_create to pass along
+  a hashed password when one is present.
+
 ## [1.1.2] - 2017-02-16
 ### Added
 - Allow httparty v0.14.x

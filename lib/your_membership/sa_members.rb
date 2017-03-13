@@ -172,7 +172,8 @@ module YourMembership
         YourMembership::Sa::Auth.authenticate(
           YourMembership::Session.create,
           profile.data['Username'],
-          profile.data['Password']
+          profile.data['Password'],
+          profile.data['PasswordHash']
         )
       end
     end
