@@ -23,7 +23,7 @@ module HTTParty
     def fix_cdata(body)
       # <![CDATA[ = &lt;![CDATA[
       # ]]> =  ]]&gt;
-      if body.include? '&lt;![CDATA['
+      if body.present? && body.include? '&lt;![CDATA['
         body.gsub! '&lt;![CDATA[', '<![CDATA['
         body.gsub! ']]&gt', ']]>'
       end
