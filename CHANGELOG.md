@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.4] - 2017-08-18
+### Fixed
+- HTTParty monkey patch now handles nils properly.
+
 ## [1.1.3] - 2017-03-13
 ### Fixed
 - Allow YourMembership::Sa::Members.profile_create to pass along
