@@ -2,6 +2,7 @@ require 'dotenv'
 require 'pry'
 require 'vcr'
 require 'your_membership'
+require 'webmock/rspec'
 
 Dotenv.load(
   File.expand_path('../../.env.local', __FILE__),
@@ -98,4 +99,3 @@ YourMembership.configure(
   privateKey: ENV.fetch('YM_API_PRIVATE_KEY'),
   saPasscode: ENV.fetch('YM_API_SA_PASSCODE')
 )
-

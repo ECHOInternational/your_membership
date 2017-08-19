@@ -252,6 +252,11 @@ Thanks to grants and donations from people like you, ECHO is able to connect tra
 
 To find out more about ECHO, or to help with the work that is being done worldwide please visit http://www.echonet.org
 
+## Contributors
+npflood
+sbleon
+mmccarthy15
+
 ## Contributing
 
 If you find a problem with this library or would like to contribute an improvement please fork and submit a pull request.
