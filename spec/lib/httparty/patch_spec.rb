@@ -22,9 +22,12 @@ describe 'FixCdata' do
     end
   end
 
-  it 'handle blank body response' do
+  it 'handle nil body response' do
     VCR.use_cassette 'no_body_response' do
-      # Note that a nil body is unlikely (never) to occur within YM, but other non-YM tools may respond with a nil body
+      # The `null` in the cassette is being turned into a body of "" instead of a nil body. Stub it to be nil.
+      expect_any_instance_of(HTTParty::Response).to receive_messages(body: nil)
+      # Note that a nil body is unlikely (never) to occur within YM, but other non-YM APIs may respond with a nil body,
+      # so we need to ensure that our patch can handle that.
       response = HTTParty.post("https://api.yourmembership.com/")
       expect(response.body).to be nil
     end
