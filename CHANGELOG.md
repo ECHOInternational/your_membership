@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.5] - 2018-03-21
+### Added
+- Allow httparty v0.16.x
+
 ## [1.1.4] - 2017-08-18
 ### Fixed
 - HTTParty monkey patch now handles nils properly.
