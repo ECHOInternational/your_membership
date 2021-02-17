@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "httparty", ">=0.13.1", "<0.19"
   spec.add_dependency "nokogiri", "~>1.6"
 
-  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "bundler", "<3"
   spec.add_development_dependency "dotenv"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake"
