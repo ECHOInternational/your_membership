@@ -2,8 +2,6 @@ require "httparty"
 require "nokogiri"
 require "yaml"
 
-require "httparty/patch"
-
 require "your_membership/error"
 require "your_membership/config"
 require "your_membership/base"
