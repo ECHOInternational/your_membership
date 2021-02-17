@@ -1,3 +1,5 @@
+require 'httparty/ym_xml_parser'
+
 module YourMembership
   # Base Class inherited by all Your Membership SDK Classes.
   class Base
@@ -21,6 +23,15 @@ module YourMembership
       @@genericCallID
     end
     # rubocop:enable Style/ClassVars
+
+    # Fix bad XML from YM API by using custom parser.
+    # @api private
+    # @override HTTParty::ClassMethods#post
+    # @return [HTTParty::Response]
+    def self.post(path, options = {}, &block)
+      opt = options.merge(parser: ::HTTParty::YMXMLParser)
+      super(path, opt, &block)
+    end
 
     # A Guard Method that returns true if the response from the API can be processed and raises an exception if not.
     # @param [Hash] response

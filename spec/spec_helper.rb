@@ -1,5 +1,5 @@
 require 'dotenv'
-require 'pry'
+require 'byebug'
 require 'vcr'
 require 'your_membership'
 require 'webmock/rspec'

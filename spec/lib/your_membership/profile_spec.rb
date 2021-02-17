@@ -77,6 +77,7 @@ describe YourMembership::Profile do
       }
     }
   end
+
   it "accepts and sets required parameters for new profiles" do
     profile = YourMembership::Profile.create_new('afirstname', 'alastname', 'amembertypecode', 'aemail', 'ausername', 'apassword', {})
     profile.data['FirstName'].should == 'afirstname'
