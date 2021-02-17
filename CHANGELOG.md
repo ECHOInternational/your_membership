@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.6] - 2021-02-17
+### Added
+- Allow httparty v0.18.x
+
 ## [1.1.5] - 2018-03-21
 ### Added
 - Allow httparty v0.16.x
