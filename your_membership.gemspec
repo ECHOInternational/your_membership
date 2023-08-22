@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # This gem will work with 2.3.0 due to the httparty required gem
-  spec.required_ruby_version = '>= 2.3.0'
+  spec.required_ruby_version = ">= 2.3.0"
 
-  spec.add_dependency "httparty", ">=0.13.1", "<0.21"
+  spec.add_dependency "httparty", ">=0.13.1", "<=0.21"
   spec.add_dependency "nokogiri", "~>1.6"
 
   spec.add_development_dependency "bundler", "<3"
