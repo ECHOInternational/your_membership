@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2023-08-22
+### Added
+- Allow httparty v0.21.x
+### Breaking
+- Drop support for Ruby < 2.3
+
 ## [1.1.6] - 2021-02-17
 ### Added
 - Allow httparty v0.18.x
